@@ -15,6 +15,8 @@ html, body {
   top: 2em;
   right: 2em;
   background: #fff;
+  font-size: 0.8em;
+  font-family: "Poppins", sans-serif;
   color: #1EAD41;
   padding: 0.75em 1em;
   border-radius: 0.5em;
@@ -40,17 +42,88 @@ html, body {
   background: #fff;
   border-radius: 1em;
   padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
 }
 .container .card .color_display {
   background: #1468c7;
   border-radius: 0.5em;
-  height: 5em;
+  height: 10em;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8em;
+}
+.container .card .color_display .copy_buttons {
+  display: flex;
+  gap: 0.5em;
+}
+.container .card .color_display .copy_buttons .copy_button {
+  background: #fff;
+  padding: 0.3em 0.8em;
+  border-radius: 0.4em;
+  margin-top: 1em;
+  cursor: pointer;
 }
 .container .card .color_sliders {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1em;
+}
+.container .card .color_sliders .slider .info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65em;
+  font-family: "Poppins", sans-serif;
+}
+.container .card .color_generator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.container .card .color_generator .input_hex {
+  display: flex;
+  position: relative;
+}
+.container .card .color_generator .input_hex input {
+  background: rgb(226, 224, 224);
+  padding: 0.5em;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  border-radius: 0.5em;
+  font-size: 0.7em;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+.container .card .color_generator .input_hex span {
+  position: absolute;
+  left: -1px;
+  background: #767676;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7em;
+  padding: 0.5em 1em;
+  color: #fff;
+  border-radius: 0.5em 0em 0em 0.5em;
+}
+.container .card .color_generator .generate {
+  background: rgb(8, 176, 112);
+  color: white;
+  padding: 0.5em 1.2em;
+  border-radius: 0.5em;
+  transition: background 0.5s ease-in;
+  font-size: 0.7em;
+  font-family: "Poppins", sans-serif;
+}
+.container .card .color_generator .generate:hover {
+  cursor: pointer;
+  background: rgb(6, 161, 101);
 }
 .container .card .message {
   font-family: "Righteous", sans-serif;
@@ -59,57 +132,6 @@ html, body {
   text-align: center;
   margin-bottom: 1.2em;
   line-height: 1;
-}
-.container .card .code {
-  display: flex;
-  gap: 0.35em;
-}
-.container .card .code .display_wrapper {
-  display: flex;
-  position: relative;
-}
-.container .card .code .display_wrapper input {
-  background: white;
-  padding: 0.5em;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  border-radius: 0.5em;
-  font-size: 1em;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-}
-.container .card .code .display_wrapper span {
-  position: absolute;
-  left: -1px;
-  background: #767676;
-  font-family: "Poppins", sans-serif;
-  font-size: 1em;
-  padding: 0.5em 1em;
-  color: #fff;
-  border-radius: 0.5em 0em 0em 0.5em;
-}
-.container .card .code #copy {
-  padding: 0.5em 0.85em;
-  border: none;
-  border-radius: 0.5em;
-  font-size: 1em;
-  font-family: "Poppins", sans-serif;
-}
-.container .card .code #copy:hover {
-  cursor: pointer;
-}
-.container .card .generate {
-  background: white;
-  padding: 0.5em 1.2em;
-  border-radius: 0.5em;
-  transition: background 0.3s ease-in;
-  font-family: "Poppins", sans-serif;
-}
-.container .card .generate:hover {
-  cursor: pointer;
-  background: #002147;
-  color: aliceblue;
 }
 
 @keyframes toast-in {

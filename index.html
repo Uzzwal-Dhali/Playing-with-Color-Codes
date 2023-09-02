@@ -9,9 +9,20 @@
 <body>
   <div class="container">
     <div class="card">
-      <div class="color_display"></div>
+      <div id="colorDisplay" class="color_display">
+        <div id="hexCode" class="hex">#45ef0c</div>
+        <div id="rgbCode" class="rgb">rgb(22, 123, 34)</div>
+        <div class="copy_buttons">
+          <div id="copyHex" class="copy_button copy_hex">Copy Hex</div>
+          <div id="copyRGB" class="copy_button copy_rgb">Copy RGB</div>
+        </div>
+      </div>
       <div class="color_sliders">
         <div class="slider">
+          <div class="info">
+            <div class="name">Red</div>
+            <div class="value">230</div>
+          </div>
           <input
             type="range"
             min="0"
@@ -19,9 +30,14 @@
             value=""
             class=""
             id=""
-            />
+          />
+
         </div>
         <div class="slider">
+          <div class="info">
+            <div class="name">Green</div>
+            <div class="value"></div>
+          </div>
           <input
             type="range"
             min="0"
@@ -29,9 +45,14 @@
             value=""
             class=""
             id=""
-            />
+          />
+
         </div>
         <div class="slider">
+          <div class="info">
+            <div class="name">Blue</div>
+            <div class="value"></div>
+          </div>
           <input
             type="range"
             min="0"
@@ -39,10 +60,19 @@
             value=""
             class=""
             id=""
-            />
+          />
+
         </div>
+      </div>
+      <div class="color_generator">
+        <div class="input_hex">
+          <input id="inputHex" type="text" />
+          <span>#</span>
+        </div>
+        <div class="generate">Generate Random Colors</div>
       </div>
     </div>
   </div>
+  <script src="main.js"></script>
 </body>
 </html>
