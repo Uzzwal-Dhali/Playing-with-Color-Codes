@@ -25,10 +25,14 @@ function main() {
   const copyRGB = document.getElementById("copyRGB");
   const input = document.getElementById('inputHex');
 
+  const red = document.getElementById('sliderRed');console.log(red);
+  const green = document.getElementById('sliderGreen');
+  const blue = document.getElementById('sliderBlue');
+  red.addEventListener('change', sliderChanged(red, green, blue));
+  green.addEventListener('change', sliderChanged(red, green, blue));
+  blue.addEventListener('change', sliderChanged(red, green, blue));
 
-  const generate = document.querySelector(".generate");
-
-  generate.addEventListener("click", generateColor);
+  document.querySelector(".generate").addEventListener("click", generateColor);
 
   copyHex.addEventListener('click', function() {
     navigator.clipboard.writeText(`#` + input.value);
@@ -57,7 +61,6 @@ function main() {
     copyHex.innerHTML = "Copy Hex";
     const code = e.target.value;
     if(code) {
-      // input.value = code;
       if(isValidHex(code)) {
         updateColorCodeToDom(hexToNumbers(code));
       }
@@ -67,11 +70,22 @@ function main() {
 
 // Event Handlers
 function generateColor() {
-    const numbers = generateRandomNumbers();
-    updateColorCodeToDom(numbers);
-    copyHex.innerHTML = "Copy Hex";
-    copyRGB.innerHTML = "Copy RGB";
+  const numbers = generateRandomNumbers();
+  updateColorCodeToDom(numbers);
+  copyHex.innerHTML = "Copy Hex";
+  copyRGB.innerHTML = "Copy RGB";
+}
+
+function sliderChanged(red, green, blue) {
+  return function() {
+    const colors = {
+      red: parseInt(red.value),
+      green: parseInt(green.value),
+      blue: parseInt(blue.value),
+    }
+    updateColorCodeToDom(colors);
   }
+}
 
 // DOM Functions
 function updateColorCodeToDom(numbers) {
