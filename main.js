@@ -40,19 +40,26 @@ function main() {
     if(isValidHex(input.value)) {
       generateToastMsg(`#${input.value} is copied successfully!`);
       this.innerHTML = "Hex Code Coppied";
+      copyRGB.innerText = 'Copy RGB';
     } else {
       alert('Oops! the color code is not valid');
     }
   });
 
+  copyRGB.addEventListener('click', function() {
+    navigator.clipboard.writeText(rgbCode.innerText);
+    generateToastMsg(`${rgbCode.innerText} is copied successfully!`);
+    this.innerHTML = "RGB Code Coppied";
+    copyHex.innerText = 'Copy Hex';
+  })
+
   input.addEventListener('keyup', function(e) {
     copyHex.innerHTML = "Copy Hex";
     const code = e.target.value;
     if(code) {
-      input.value = code.toUpperCase();
+      // input.value = code;
       if(isValidHex(code)) {
-        let colors = hexToNumbers(code);
-        updateColorCodeToDom(colors);
+        updateColorCodeToDom(hexToNumbers(code));
       }
     }
   })
@@ -117,7 +124,6 @@ function generateRandomNumbers() {
   const blue = Math.floor(Math.random() * 255);
 
   return {red, green, blue};
-  // return `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
 }
 
 /**

@@ -64,7 +64,7 @@ html, body {
   justify-content: center;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 .container .card .color_display .copy_buttons {
   display: flex;
