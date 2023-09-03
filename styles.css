@@ -1,5 +1,12 @@
+/**
+** Author: Uzzwal Dhali
+** Author Portfolio: https://www.uzzwal.com
+*
+*/
 @import url("https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@300;400;500&display=swap");
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,6 +40,7 @@ html, body {
 
 .container {
   background: #1468c7;
+  padding: 2em;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -41,7 +49,7 @@ html, body {
 .container .card {
   background: #fff;
   border-radius: 1em;
-  padding: 1.5em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 1.5em;
@@ -74,6 +82,9 @@ html, body {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1em;
 }
+.container .card .color_sliders .slider input {
+  width: 100%;
+}
 .container .card .color_sliders .slider .info {
   display: flex;
   justify-content: space-between;
@@ -81,24 +92,24 @@ html, body {
   font-family: "Poppins", sans-serif;
 }
 .container .card .color_generator {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.5em;
 }
 .container .card .color_generator .input_hex {
   display: flex;
   position: relative;
 }
 .container .card .color_generator .input_hex input {
+  display: flex;
+  width: 100%;
   background: rgb(226, 224, 224);
   padding: 0.5em;
   border: none;
   box-shadow: none;
   outline: none;
   border-radius: 0.5em;
-  font-size: 0.7em;
+  font-size: 1em;
   text-align: center;
   font-family: "Poppins", sans-serif;
 }
@@ -107,7 +118,7 @@ html, body {
   left: -1px;
   background: #767676;
   font-family: "Poppins", sans-serif;
-  font-size: 0.7em;
+  font-size: 1em;
   padding: 0.5em 1em;
   color: #fff;
   border-radius: 0.5em 0em 0em 0.5em;
@@ -115,11 +126,15 @@ html, body {
 .container .card .color_generator .generate {
   background: rgb(8, 176, 112);
   color: white;
+  cursor: pointer;
   padding: 0.5em 1.2em;
   border-radius: 0.5em;
   transition: background 0.5s ease-in;
-  font-size: 0.7em;
+  font-size: 1em;
   font-family: "Poppins", sans-serif;
+}
+.container .card .color_generator .generate span {
+  display: none;
 }
 .container .card .color_generator .generate:hover {
   cursor: pointer;

@@ -16,25 +16,19 @@ window.onload = () => {
 
 // Boot Function
 function main() {
-  const container = document.querySelector(".container");
-  const display = document.getElementById("colorDisplay");
-  const hexCode = document.getElementById("hexCode");
-  const rgbCode = document.getElementById("rgbCode");
+  document.getElementById("hexCode").innerText = `#` + predefinedColor.toUpperCase();
+  document.getElementById("inputHex").value = predefinedColor.toUpperCase();
+
+
+  const rgbCodeDisplay = document.getElementById("rgbCode");
   const copyHex = document.getElementById("copyHex");
   const copyRGB = document.getElementById("copyRGB");
   const input = document.getElementById('inputHex');
-  const generate = document.querySelector(".generate");
-  display.value = predefinedColor.toUpperCase();
 
-  generate.addEventListener("click", function() {
-    let bgColor = generateColor();
-    container.style.background = `#` + bgColor;
-    display.style.background = `#` + bgColor;
-    input.value = bgColor.toUpperCase();
-    hexCode.innerHTML = `#` + bgColor;
-    copyHex.innerHTML = "Copy Hex";
-    copyRGB.innerHTML = "Copy RGB";
-  });
+
+  const generate = document.querySelector(".generate");
+
+  generate.addEventListener("click", generateColor);
 
   copyHex.addEventListener('click', function() {
     navigator.clipboard.writeText(`#` + input.value);
@@ -57,28 +51,39 @@ function main() {
     if(code) {
       input.value = code.toUpperCase();
       if(isValidHex(code)) {
-        container.style.background = `#` + code;
-        display.style.background = `#` + code;
-        hexCode.innerHTML = `#` + code.toUpperCase();
+        let colors = hexToNumbers(code);
+        updateColorCodeToDom(colors);
       }
     }
   })
 }
 
 // Event Handlers
+function generateColor() {
+    const numbers = generateRandomNumbers();
+    updateColorCodeToDom(numbers);
+    copyHex.innerHTML = "Copy Hex";
+    copyRGB.innerHTML = "Copy RGB";
+  }
 
 // DOM Functions
-
-// Utilities Function
-
-/**
- * generate and return an object of three colors
- * @returns
- */
-function w() {
-
+function updateColorCodeToDom(numbers) {
+  const hexCode = generateHexCode(numbers);
+  const rgbCode = generateRGBCode(numbers);
+  document.querySelector(".container").style.background = `#`+hexCode;
+  document.getElementById("colorDisplay").style.background = `#`+hexCode;
+  document.getElementById("hexCode").innerText = `#`+hexCode;
+  document.getElementById("rgbCode").innerText = rgbCode;
+  document.getElementById("sliderRedValue").innerText = numbers.red;
+  document.getElementById("sliderRed").value = numbers.red;
+  document.getElementById("sliderGreenValue").innerText = numbers.green;
+  document.getElementById("sliderGreen").value = numbers.green;
+  document.getElementById("sliderBlueValue").innerText = numbers.blue;
+  document.getElementById("sliderBlue").value = numbers.blue;
+  document.getElementById("inputHex").value = hexCode;
 }
 
+// Utilities Function
 
 /**
  * This function will generate a hex code from random numbers
@@ -90,18 +95,49 @@ function generateHexCode({ red, green, blue }) {
     const hex = value.toString(16);
     return hex.length === 1 ? `0${hex}` : hex;
   }
-  return `#${generateHexValue(red)}${generateHexValue(green)}${generateHexValue(blue)}`.toUpperCase();
+  return `${generateHexValue(red)}${generateHexValue(green)}${generateHexValue(blue)}`.toUpperCase();
 }
 
+/**
+ *
+ * @param {object} param0
+ * @returns text
+ */
+function generateRGBCode({ red, green, blue }) {
+  return `rgb(${red}, ${green}, ${blue})`;
+}
 
-function generateColor() {
+/**
+ * Generating color codes, basically three Random Numbers
+ * @returns
+ */
+function generateRandomNumbers() {
   const red = Math.floor(Math.random() * 255);
   const green = Math.floor(Math.random() * 255);
   const blue = Math.floor(Math.random() * 255);
 
-  return `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+  return {red, green, blue};
+  // return `${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
 }
 
+/**
+ *
+ * Convert Hex to Number
+ * @param {string} hex
+ * @returns {object}
+ *
+ */
+function hexToNumbers(hex) {
+  const red = parseInt(hex.slice(0,2), 16);
+  const green = parseInt(hex.slice(2,4), 16);
+  const blue = parseInt(hex.slice(4), 16);
+
+  return { red, green, blue };
+}
+
+/**
+ * Generating a toast message
+ */
 function generateToastMsg(msg) {
   div = document.createElement('div');
   div.className = 'toast toast-in';
@@ -120,6 +156,12 @@ function generateToastMsg(msg) {
   document.body.appendChild(div);
 }
 
+/**
+ * Checking the HexaDecimal value length first
+ * then checking the type id that is a valid HexaDecimal code
+ * @param {*} code
+ * @returns true or false
+ */
 function isValidHex(code) {
   if(code.length !== 6) return false;
   return /^[0-9A-Fa-f]{6}$/i.test(code);
