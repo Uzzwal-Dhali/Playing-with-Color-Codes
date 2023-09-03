@@ -132,13 +132,13 @@ html, body {
   transition: background 0.5s ease-in;
   font-size: 1em;
   font-family: "Poppins", sans-serif;
+  text-align: center;
 }
 .container .card .color_generator .generate span {
   display: none;
 }
 .container .card .color_generator .generate:hover {
-  cursor: pointer;
-  background: rgb(6, 161, 101);
+  background: rgb(2, 145, 90);
 }
 .container .card .message {
   font-family: "Righteous", sans-serif;
