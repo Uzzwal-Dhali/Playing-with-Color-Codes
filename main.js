@@ -7,19 +7,15 @@
 
 // Global Variables
 let div = null;
-let predefinedColor = '1468c7';
 
 // Onload Handler
 window.onload = () => {
+  updateColorCodeToDom(generateRandomNumbers());
   main();
 }
 
 // Boot Function
 function main() {
-  document.getElementById("hexCode").innerText = `#` + predefinedColor.toUpperCase();
-  document.getElementById("inputHex").value = predefinedColor.toUpperCase();
-
-
   const rgbCodeDisplay = document.getElementById("rgbCode");
   const copyHex = document.getElementById("copyHex");
   const copyRGB = document.getElementById("copyRGB");
